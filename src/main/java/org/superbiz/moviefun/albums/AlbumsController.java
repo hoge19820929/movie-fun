@@ -62,8 +62,10 @@ public class AlbumsController {
 
 
     private void saveUploadToBlobStore(long albumId, @RequestParam("file") MultipartFile uploadedFile) throws IOException {
+        String coverFileName = format("cover-%d", albumId);
+
         Blob blob = new Blob(
-                String.valueOf(albumId),
+                coverFileName,
                 uploadedFile.getInputStream(),
                 uploadedFile.getContentType()
         );
@@ -80,7 +82,7 @@ public class AlbumsController {
     }
 
     private Optional<Blob> getCoverImageFromBlobStore(@PathVariable long albumId) throws IOException {
-        String coverFileName = format("covers/%d", albumId);
+        String coverFileName = format("cover-%d", albumId);
         return blobStore.get(coverFileName);
     }
 }

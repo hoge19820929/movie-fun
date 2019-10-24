@@ -2,7 +2,6 @@ package org.superbiz.moviefun.blobstore;
 
 import org.apache.tika.Tika;
 import org.apache.tika.io.IOUtils;
-import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -10,7 +9,6 @@ import java.util.Optional;
 
 import static java.lang.String.format;
 
-@Component
 public class FileStore implements BlobStore {
     @Override
     public void put(Blob blob) throws IOException {
