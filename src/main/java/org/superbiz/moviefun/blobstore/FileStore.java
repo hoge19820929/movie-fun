@@ -10,9 +10,11 @@ import java.util.Optional;
 import static java.lang.String.format;
 
 public class FileStore implements BlobStore {
+    private static final String IMAGES_FOLDER = "covers";
+
     @Override
     public void put(Blob blob) throws IOException {
-        String coverFileName = format("covers/%s", blob.name);
+        String coverFileName = format("%s/%s", IMAGES_FOLDER, blob.name);
         File targetFile = new File(coverFileName);
 
         targetFile.delete();
@@ -26,7 +28,9 @@ public class FileStore implements BlobStore {
 
     @Override
     public Optional<Blob> get(String name) throws IOException {
-        File file = new File(name);
+        String coverFileName = format("%s/%s", IMAGES_FOLDER, name);
+
+        File file = new File(coverFileName);
 
         if (file.exists()) {
             Path coverFilePath = file.toPath();

@@ -25,7 +25,6 @@ public class S3Store implements BlobStore {
 
     @Override
     public Optional<Blob> get(String name) throws IOException {
-        System.out.println("name = " + name);
         S3Object s3Object = s3Client.getObject(photoStorageBucket, name);
         Blob blob = new Blob(
                 s3Object.getKey(),
